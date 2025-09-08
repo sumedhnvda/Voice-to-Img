@@ -45,7 +45,7 @@ def split_into_scenes(text):
             {"role": "user", "content": user_prompt}
         ],
         max_tokens=1000,
-        temperature=0.3  # Lower temperature for more consistent output
+        temperature=0.3  
     )
     scenes_text = response.choices[0].message.content
     scenes = [line.strip("- ").strip() for line in scenes_text.split('\n') if line.strip()]
@@ -79,20 +79,6 @@ def call_banana_api(prompt, context_image_bytes=None):
             "topK": 45,
             "maxOutputTokens": 2048
         },
-        "safety_settings": [
-            {
-                "category": "HARM_CATEGORY_DANGEROUS_CONTENT",
-                "threshold": "BLOCK_MEDIUM_AND_ABOVE"
-            },
-            {
-                "category": "HARM_CATEGORY_HARASSMENT",
-                "threshold": "BLOCK_MEDIUM_AND_ABOVE"
-            },
-            {
-                "category": "HARM_CATEGORY_HATE_SPEECH",
-                "threshold": "BLOCK_MEDIUM_AND_ABOVE"
-            }
-        ]
     }
     
     try:
